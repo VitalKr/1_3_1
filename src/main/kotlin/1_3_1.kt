@@ -6,8 +6,6 @@ fun main(args: Array<String>) {
     val day = hour * 24
     val twoDays = day * 2
     val threeDays = day * 3
-  //  var text = ""
-
 
     do {
         println()
@@ -29,7 +27,6 @@ fun main(args: Array<String>) {
 private fun agoToText(
     time: Int,
     minute: Int,
- //   text: String,
     hour: Int,
     day: Int,
     twoDays: Int,
