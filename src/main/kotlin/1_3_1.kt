@@ -40,8 +40,7 @@ private fun agoToText(time: Int, timeMin: Int, timeHour: Int): String =
     }
 
 fun nameNumMin(timeMin: Int): String {
-    val timeMin100 = (timeMin) % 100
-    val timeMin10 = (timeMin) % 10
+    val (timeMin100, timeMin10) = timeCount(timeMin)
     return when {
         timeMin100 in 11..19 -> "минут"
         timeMin10 == 1 -> "минуту"
@@ -51,14 +50,19 @@ fun nameNumMin(timeMin: Int): String {
 }
 
 fun nameNumHour(timeHour: Int): String {
-    val timeHour100 = (timeHour) % 100
-    val timeHour10 = (timeHour) % 10
+    val (timeHour100, timeHour10) = timeCount(timeHour)
     return when {
         timeHour100 in 11..19 -> "часов"
         timeHour10 == 1 -> "час"
         timeHour10 in 2..4 -> "часа"
         else -> "часов"
     }
+}
+
+private fun timeCount(timeMin: Int): Pair<Int, Int> {
+    val timeMin100 = (timeMin) % 100
+    val timeMin10 = (timeMin) % 10
+    return Pair(timeMin100, timeMin10)
 }
 
 
