@@ -5,9 +5,7 @@ const val twoDays = day * 2
 const val threeDays = day * 3
 
 fun main() {
-
     var time: Int
-
     do {
         println()
         println("Введите время проведенное в сети в секундах или \"end\" для выхода.")
@@ -15,7 +13,6 @@ fun main() {
         if (timeUser != "end") {
             try {
                 time = timeUser.toInt()
-
             } catch (e: Exception) {
                 println("ВНИМАНИЕ!!! Вы ввели не число!")
                 continue
