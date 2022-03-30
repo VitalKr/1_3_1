@@ -1,11 +1,12 @@
-fun main(args: Array<String>) {
+const val minute = 60
+const val hour = minute * 60
+const val day = hour * 24
+const val twoDays = day * 2
+const val threeDays = day * 3
 
-    var time = 0
-    val minute = 60
-    val hour = minute * 60
-    val day = hour * 24
-    val twoDays = day * 2
-    val threeDays = day * 3
+fun main() {
+
+    var time: Int
 
     do {
         println()
@@ -17,37 +18,30 @@ fun main(args: Array<String>) {
 
             } catch (e: Exception) {
                 println("ВНИМАНИЕ!!! Вы ввели не число!")
+                continue
             }
+            val timeMin = time / 60
+            val timeHour = time / 60 / 24
 
-            println(agoToText(time, minute,  hour, day, twoDays, threeDays))
+            println(agoToText(time, timeMin, timeHour))
         }
     } while (timeUser != "end")
 }
 
-private fun agoToText(
-    time: Int,
-    minute: Int,
-    hour: Int,
-    day: Int,
-    twoDays: Int,
-    threeDays: Int
-): String {
-
-    val text = when (time) {
+private fun agoToText(time: Int, timeMin: Int, timeHour: Int): String =
+    when (time) {
         in 1..minute -> "был(а) только что"
-        in (minute + 1)..hour -> "был(а) ${time / 60} ${nameNumMin(time)} назад"
-        in (hour + 1)..day -> "был(а) в сети ${time / 60 / 24} ${nameNumHour(time)} назад"
+        in (minute + 1)..hour -> "был(а) $timeMin ${nameNumMin(timeMin)} назад"
+        in (hour + 1)..day -> "был(а) в сети $timeHour ${nameNumHour(timeHour)} назад"
         in (day + 1)..twoDays -> "был(а) в сети сегодня"
         in (twoDays + 1)..threeDays -> "был(а) в сети вчера"
-        in (threeDays + 1) .. Int.MAX_VALUE  -> "был(а) в сети давно"
+        in (threeDays + 1)..Int.MAX_VALUE -> "был(а) в сети давно"
         else -> "Ошибка ввода данных!"
     }
-    return text
-}
 
-fun nameNumMin(time: Int): String {
-    val timeMin100 = (time / 60) % 100
-    val timeMin10 = (time / 60) % 10
+fun nameNumMin(timeMin: Int): String {
+    val timeMin100 = (timeMin) % 100
+    val timeMin10 = (timeMin) % 10
     return when {
         timeMin100 in 11..19 -> "минут"
         timeMin10 == 1 -> "минуту"
@@ -56,9 +50,9 @@ fun nameNumMin(time: Int): String {
     }
 }
 
-fun nameNumHour(time: Int): String {
-    val timeHour100 = (time / 60 / 24) % 100
-    val timeHour10 = (time / 60 / 24) % 10
+fun nameNumHour(timeHour: Int): String {
+    val timeHour100 = (timeHour) % 100
+    val timeHour10 = (timeHour) % 10
     return when {
         timeHour100 in 11..19 -> "часов"
         timeHour10 == 1 -> "час"
@@ -66,6 +60,7 @@ fun nameNumHour(time: Int): String {
         else -> "часов"
     }
 }
+
 
 
 
