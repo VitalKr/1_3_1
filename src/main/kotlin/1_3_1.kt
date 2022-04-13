@@ -1,8 +1,8 @@
-const val minute: Int = 60
-const val hour: Int = minute * minute
-const val day: Int = hour * 24
-const val twoDays: Int = day * 2
-const val threeDays: Int = day * 3
+const val MINUTE: Int = 60
+const val HOUR: Int = MINUTE * MINUTE
+const val DAY: Int = HOUR * 24
+const val TWO_DAYS: Int = DAY * 2
+const val TREE_DAYS: Int = DAY * 3
 
 fun main() {
     var time: Int
@@ -18,7 +18,7 @@ fun main() {
                 continue
             }
 
-            println(agoToText(time, time / minute, time / minute / minute))
+            println(agoToText(time, time / MINUTE, time / MINUTE / MINUTE))
         }
     } while (isNotEnd(timeUser))
 }
@@ -27,12 +27,12 @@ private fun isNotEnd(timeUser: String) = timeUser != "end"
 
 private fun agoToText(time: Int, timeMin: Int, timeHour: Int): String =
     when (time) {
-        in 1..minute -> "был(а) только что"
-        in (minute + 1)..hour -> "был(а) $timeMin ${nameNumMin(time / minute)} назад"
-        in (hour + 1)..day -> "был(а) в сети $timeHour ${nameNumHour(time / minute / minute)} назад"
-        in (day + 1)..twoDays -> "был(а) в сети сегодня"
-        in (twoDays + 1)..threeDays -> "был(а) в сети вчера"
-        in (threeDays + 1)..Int.MAX_VALUE -> "был(а) в сети давно"
+        in 1..MINUTE -> "был(а) только что"
+        in (MINUTE + 1)..HOUR -> "был(а) $timeMin ${nameNumMin(time / MINUTE)} назад"
+        in (HOUR + 1)..DAY -> "был(а) в сети $timeHour ${nameNumHour(time / MINUTE / MINUTE)} назад"
+        in (DAY + 1)..TWO_DAYS -> "был(а) в сети сегодня"
+        in (TWO_DAYS + 1)..TREE_DAYS -> "был(а) в сети вчера"
+        in (TREE_DAYS + 1)..Int.MAX_VALUE -> "был(а) в сети давно"
         else -> "Ошибка ввода данных!"
     }
 
